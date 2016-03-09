@@ -1,7 +1,7 @@
 {
   "name": "react-youtube-player",
   "description": "React component that encapsulates YouTube IFrame Player API and exposes player controls using the component properties.",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/gajus/react-youtube-player"
