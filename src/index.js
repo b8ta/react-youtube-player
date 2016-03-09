@@ -102,7 +102,7 @@ class ReactYoutubePlayer extends React.Component {
 
         this.diffState({}, this.props);
         if (this.props.configuration.mute === 1) {
-          this.mute();
+          this.mutePlayer();
         }
     }
 

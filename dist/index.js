@@ -165,7 +165,7 @@ var ReactYoutubePlayer = (function (_React$Component) {
 
             this.diffState({}, this.props);
             if (this.props.configuration.mute === 1) {
-                this.mute();
+                this.mutePlayer();
             }
         }
     }, {
