@@ -164,8 +164,12 @@ var ReactYoutubePlayer = (function (_React$Component) {
             this.bindEvent();
 
             this.diffState({}, this.props);
+
             if (this.props.configuration.mute === 1) {
                 this.mutePlayer();
+            }
+            if (this.props.configuration.volume) {
+                this.setVolume(this.props.configuration.volume);
             }
         }
     }, {
@@ -328,13 +332,17 @@ ReactYoutubePlayer.propTypes = {
         showinfo: _react2.default.PropTypes.oneOf([0, 1]),
         start: _react2.default.PropTypes.number,
         theme: _react2.default.PropTypes.oneOf(['dark', 'light']),
-        mute: _react2.default.PropTypes.oneOf([0, 1])
+        mute: _react2.default.PropTypes.oneOf([0, 1]),
+        volume: _react2.default.PropTypes.number
     }) };
 ReactYoutubePlayer.defaultProps = {
     width: '100%',
     height: '100%',
     playbackState: 'unstarted',
-    configuration: {},
+    configuration: {
+        mute: 0,
+        volume: 100
+    },
     onEnd: function onEnd() {},
     onPlay: function onPlay() {},
     onPause: function onPause() {},
