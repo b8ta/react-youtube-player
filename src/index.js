@@ -75,7 +75,8 @@ class ReactYoutubePlayer extends React.Component {
             rel: React.PropTypes.oneOf([0, 1]),
             showinfo: React.PropTypes.oneOf([0, 1]),
             start: React.PropTypes.number,
-            theme: React.PropTypes.oneOf(['dark', 'light'])
+            theme: React.PropTypes.oneOf(['dark', 'light']),
+            mute: React.PropTypes.oneOf([0, 1])
         })
         /* eslint-enable camelcase, id-match */
     };
@@ -100,6 +101,9 @@ class ReactYoutubePlayer extends React.Component {
         this.bindEvent();
 
         this.diffState({}, this.props);
+        if (this.configuration.mute === 1) {
+          this.mute();
+        }
     }
 
     componentWillReceiveProps (nextProps) {
@@ -265,6 +269,19 @@ class ReactYoutubePlayer extends React.Component {
 
             this.refs.viewport.style[name] = formattedSize;
         }
+    };
+
+    mutePlayer = () => {
+      this.player.mute();
+    }
+
+    setVolume = (volume) => {
+      if (volume < 0) {
+        volume = 0;
+      } else if (volume > 100) {
+        volume = 100;
+      }
+      this.player.setVolume(volume);
     };
 
     /**

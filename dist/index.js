@@ -1,20 +1,14 @@
 'use strict';
 
-var _lodashLangIsString2 = require('lodash/lang/isString');
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _lodashLangIsString3 = _interopRequireDefault(_lodashLangIsString2);
-
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _isString = require('lodash/lang/isString');
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+var _isString2 = _interopRequireDefault(_isString);
 
 var _react = require('react');
 
@@ -27,6 +21,14 @@ var _youtubePlayer2 = _interopRequireDefault(_youtubePlayer);
 var _isNumeric = require('is-numeric');
 
 var _isNumeric2 = _interopRequireDefault(_isNumeric);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
  * @typedef {string} YoutubePlayer~playbackState
@@ -43,27 +45,25 @@ var _isNumeric2 = _interopRequireDefault(_isNumeric);
  * @property {Object} configuration Configuration parameters to be passed to the YouTube Player (known as `playerVars` in the YouTube Player API for iframe Embeds, https://developers.google.com/youtube/player_parameters?playerVersion=HTML5#Parameters).
  */
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
 var ReactYoutubePlayer = (function (_React$Component) {
     _inherits(ReactYoutubePlayer, _React$Component);
 
     function ReactYoutubePlayer() {
-        var _this = this;
+        var _Object$getPrototypeO;
+
+        var _temp, _this, _ret;
 
         _classCallCheck(this, ReactYoutubePlayer);
 
-        _get(Object.getPrototypeOf(ReactYoutubePlayer.prototype), 'constructor', this).apply(this, arguments);
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
 
-        this.setRealPlaybackState = function (stateName) {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(ReactYoutubePlayer)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.setRealPlaybackState = function (stateName) {
             _this.realPlaybackState = stateName;
-        };
-
-        this.getRealPlaybackState = function () {
+        }, _this.getRealPlaybackState = function () {
             return _this.realPlaybackState;
-        };
-
-        this.bindEvent = function () {
+        }, _this.bindEvent = function () {
             _this.player.on('stateChange', function (event) {
                 var realPlaybackState = undefined;
 
@@ -85,9 +85,7 @@ var ReactYoutubePlayer = (function (_React$Component) {
             _this.player.on('error', function (event) {
                 _this.props.onError(event);
             });
-        };
-
-        this.diffState = function (prevProps, nextProps) {
+        }, _this.diffState = function (prevProps, nextProps) {
             // console.log('prevProps', prevProps, 'nextProps', nextProps);
 
             if (_this.realPlaybackState !== nextProps.playbackState && nextProps.playbackState) {
@@ -107,9 +105,7 @@ var ReactYoutubePlayer = (function (_React$Component) {
             if (prevProps.height !== nextProps.height) {
                 _this.setViewportHeight(nextProps.height);
             }
-        };
-
-        this.setPlaybackState = function (stateName) {
+        }, _this.setPlaybackState = function (stateName) {
             if (stateName === 'playing') {
                 _this.player.playVideo();
             } else if (stateName === 'paused') {
@@ -119,27 +115,19 @@ var ReactYoutubePlayer = (function (_React$Component) {
             } else {
                 throw new Error('Invalid playback state ("' + stateName + '").');
             }
-        };
-
-        this.cueVideoId = function (videoId) {
+        }, _this.cueVideoId = function (videoId) {
             // console.log('videoId', videoId);
 
-            if (!(0, _lodashLangIsString3['default'])(videoId)) {
+            if (!(0, _isString2.default)(videoId)) {
                 throw new Error('videoId parameter must be a string.');
             }
 
             _this.player.cueVideoById(videoId);
-        };
-
-        this.setViewportWidth = function (width) {
+        }, _this.setViewportWidth = function (width) {
             _this.setDimension('width', width);
-        };
-
-        this.setViewportHeight = function (height) {
+        }, _this.setViewportHeight = function (height) {
             _this.setDimension('height', height);
-        };
-
-        this.setDimension = function (name, size) {
+        }, _this.setDimension = function (name, size) {
             var formattedSize = undefined;
 
             if (!size) {
@@ -147,25 +135,38 @@ var ReactYoutubePlayer = (function (_React$Component) {
             } else {
                 formattedSize = size;
 
-                if ((0, _isNumeric2['default'])(formattedSize)) {
+                if ((0, _isNumeric2.default)(formattedSize)) {
                     formattedSize += 'px';
                 }
 
                 _this.refs.viewport.style[name] = formattedSize;
             }
-        };
+        }, _this.mutePlayer = function () {
+            _this.player.mute();
+        }, _this.setVolume = function (volume) {
+            if (volume < 0) {
+                volume = 0;
+            } else if (volume > 100) {
+                volume = 100;
+            }
+            _this.player.setVolume(volume);
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
+    /* eslint-enable camelcase, id-match */
 
     _createClass(ReactYoutubePlayer, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.player = (0, _youtubePlayer2['default'])(this.refs.player, {
+            this.player = (0, _youtubePlayer2.default)(this.refs.player, {
                 playerVars: this.props.configuration
             });
 
             this.bindEvent();
 
             this.diffState({}, this.props);
+            if (this.configuration.mute === 1) {
+                this.mute();
+            }
         }
     }, {
         key: 'componentWillReceiveProps',
@@ -189,6 +190,61 @@ var ReactYoutubePlayer = (function (_React$Component) {
          * @param {string} stateName
          * @returns {undefined}
          */
+
+        /**
+         * @returns {string}
+         */
+
+        /**
+         * Used to map YouTube IFrame Player API events to the callbacks
+         * defined using the component instance properties.
+         *
+         * @returns {undefined}
+         */
+
+        /**
+         * The complexity of the ReactYoutubePlayer is that it attempts to combine
+         * stateless properties with stateful player. This function is comparing
+         * the last known property value of a state with the last known state of the player.
+         * When these are different, it initiates an action that changes the player state, e.g.
+         * when the current "state" property is "play" and the last known player state is "pause",
+         * then setPlaybackState method will be called.
+         *
+         * @param {Object} prevProps
+         * @param {Object} nextProps
+         * @returns {undefined}
+         */
+
+        /**
+         * @param {string} stateName
+         * @returns {undefined}
+         */
+
+        /**
+         * @param {string} videoId
+         * @returns {undefined}
+         */
+
+        /**
+         * Update element's width without calling the render method.
+         *
+         * @param {string|number} width
+         * @returns {undefined}
+         */
+
+        /**
+         * Update element's height without calling the render method.
+         *
+         * @param {string|number} height
+         * @returns {undefined}
+         */
+
+        /**
+         * @param {string} name
+         * @param {string|number} size
+         * @returns {undefined}
+         */
+
     }, {
         key: 'render',
 
@@ -204,149 +260,86 @@ var ReactYoutubePlayer = (function (_React$Component) {
                 display: 'block'
             };
 
-            return _react2['default'].createElement(
+            return _react2.default.createElement(
                 'div',
                 { ref: 'viewport', style: style },
-                _react2['default'].createElement('div', { ref: 'player', style: style })
+                _react2.default.createElement('div', { ref: 'player', style: style })
             );
         }
-    }], [{
-        key: 'stateNames',
-        value: {
-            '-1': 'unstarted',
-            0: 'ended',
-            1: 'playing',
-            2: 'paused',
-            3: 'buffering',
-            5: 'cued'
-        },
-        enumerable: true
-    }, {
-        key: 'propTypes',
-        value: {
-            // https://developers.google.com/youtube/iframe_api_reference#onReady
-            // onReady: React.PropTypes.func,
-
-            // https://developers.google.com/youtube/iframe_api_reference#onStateChange
-            // onStateChange: React.PropTypes.func,
-
-            // https://developers.google.com/youtube/iframe_api_reference#onPlaybackQualityChange
-            // onPlaybackQualityChange: React.PropTypes.func,
-
-            // https://developers.google.com/youtube/iframe_api_reference#onPlaybackRateChange
-            // onPlaybackRateChange: React.PropTypes.func,
-
-            // https://developers.google.com/youtube/iframe_api_reference#onApiChange
-            // onApiChange: React.PropTypes.func,
-
-            onBuffer: _react2['default'].PropTypes.func,
-
-            // https://developers.google.com/youtube/iframe_api_reference#onStateChange
-            onEnd: _react2['default'].PropTypes.func,
-            // https://developers.google.com/youtube/iframe_api_reference#onError
-            onError: _react2['default'].PropTypes.func,
-
-            onPause: _react2['default'].PropTypes.func,
-            onPlay: _react2['default'].PropTypes.func,
-
-            configuration: _react2['default'].PropTypes.shape({
-                autoplay: _react2['default'].PropTypes.oneOf([0, 1]),
-                cc_load_policy: _react2['default'].PropTypes.oneOf([0, 1]),
-                color: _react2['default'].PropTypes.oneOf(['red', 'white']),
-                controls: _react2['default'].PropTypes.oneOf([0, 1, 2]),
-                disablekb: _react2['default'].PropTypes.oneOf([0, 1]),
-                enablejsapi: _react2['default'].PropTypes.oneOf([0, 1]),
-                end: _react2['default'].PropTypes.number,
-                fs: _react2['default'].PropTypes.oneOf([0, 1]),
-                hl: _react2['default'].PropTypes.string,
-                iv_load_policy: _react2['default'].PropTypes.oneOf([1, 3]),
-                list: _react2['default'].PropTypes.oneOf(['search', 'user_uploads', 'playlist']),
-                listType: _react2['default'].PropTypes.oneOf(['playlist', 'search', 'user_uploads']),
-                loop: _react2['default'].PropTypes.oneOf([0, 1]),
-                modestbranding: _react2['default'].PropTypes.oneOf([0, 1]),
-                origin: _react2['default'].PropTypes.string,
-                playlist: _react2['default'].PropTypes.string,
-                playsinline: _react2['default'].PropTypes.oneOf([0, 1]),
-                rel: _react2['default'].PropTypes.oneOf([0, 1]),
-                showinfo: _react2['default'].PropTypes.oneOf([0, 1]),
-                start: _react2['default'].PropTypes.number,
-                theme: _react2['default'].PropTypes.oneOf(['dark', 'light'])
-            })
-        },
-        enumerable: true
-    }, {
-        key: 'defaultProps',
-        value: {
-            width: '100%',
-            height: '100%',
-            playbackState: 'unstarted',
-            configuration: {},
-            onEnd: function onEnd() {},
-            onPlay: function onPlay() {},
-            onPause: function onPause() {},
-            onBuffer: function onBuffer() {},
-            onError: function onError() {}
-        },
-        enumerable: true
     }]);
 
     return ReactYoutubePlayer;
-})(_react2['default'].Component);
+})(_react2.default.Component);
 
-exports['default'] = ReactYoutubePlayer;
-module.exports = exports['default'];
+ReactYoutubePlayer.stateNames = {
+    '-1': 'unstarted',
+    0: 'ended',
+    1: 'playing',
+    2: 'paused',
+    3: 'buffering',
+    5: 'cued'
+};
+ReactYoutubePlayer.propTypes = {
+    // https://developers.google.com/youtube/iframe_api_reference#onReady
+    // onReady: React.PropTypes.func,
 
-/**
- * @returns {string}
- */
+    // https://developers.google.com/youtube/iframe_api_reference#onStateChange
+    // onStateChange: React.PropTypes.func,
 
-/**
- * Used to map YouTube IFrame Player API events to the callbacks
- * defined using the component instance properties.
- *
- * @returns {undefined}
- */
+    // https://developers.google.com/youtube/iframe_api_reference#onPlaybackQualityChange
+    // onPlaybackQualityChange: React.PropTypes.func,
 
-/**
- * The complexity of the ReactYoutubePlayer is that it attempts to combine
- * stateless properties with stateful player. This function is comparing
- * the last known property value of a state with the last known state of the player.
- * When these are different, it initiates an action that changes the player state, e.g.
- * when the current "state" property is "play" and the last known player state is "pause",
- * then setPlaybackState method will be called.
- *
- * @param {Object} prevProps
- * @param {Object} nextProps
- * @returns {undefined}
- */
+    // https://developers.google.com/youtube/iframe_api_reference#onPlaybackRateChange
+    // onPlaybackRateChange: React.PropTypes.func,
 
-/**
- * @param {string} stateName
- * @returns {undefined}
- */
+    // https://developers.google.com/youtube/iframe_api_reference#onApiChange
+    // onApiChange: React.PropTypes.func,
 
-/**
- * @param {string} videoId
- * @returns {undefined}
- */
+    onBuffer: _react2.default.PropTypes.func,
 
-/**
- * Update element's width without calling the render method.
- *
- * @param {string|number} width
- * @returns {undefined}
- */
+    // https://developers.google.com/youtube/iframe_api_reference#onStateChange
+    onEnd: _react2.default.PropTypes.func,
+    // https://developers.google.com/youtube/iframe_api_reference#onError
+    onError: _react2.default.PropTypes.func,
 
-/**
- * Update element's height without calling the render method.
- *
- * @param {string|number} height
- * @returns {undefined}
- */
+    onPause: _react2.default.PropTypes.func,
+    onPlay: _react2.default.PropTypes.func,
 
-/**
- * @param {string} name
- * @param {string|number} size
- * @returns {undefined}
- */
+    /* eslint-disable camelcase, id-match */
+    configuration: _react2.default.PropTypes.shape({
+        autoplay: _react2.default.PropTypes.oneOf([0, 1]),
+        cc_load_policy: _react2.default.PropTypes.oneOf([0, 1]),
+        color: _react2.default.PropTypes.oneOf(['red', 'white']),
+        controls: _react2.default.PropTypes.oneOf([0, 1, 2]),
+        disablekb: _react2.default.PropTypes.oneOf([0, 1]),
+        enablejsapi: _react2.default.PropTypes.oneOf([0, 1]),
+        end: _react2.default.PropTypes.number,
+        fs: _react2.default.PropTypes.oneOf([0, 1]),
+        hl: _react2.default.PropTypes.string,
+        iv_load_policy: _react2.default.PropTypes.oneOf([1, 3]),
+        list: _react2.default.PropTypes.oneOf(['search', 'user_uploads', 'playlist']),
+        listType: _react2.default.PropTypes.oneOf(['playlist', 'search', 'user_uploads']),
+        loop: _react2.default.PropTypes.oneOf([0, 1]),
+        modestbranding: _react2.default.PropTypes.oneOf([0, 1]),
+        origin: _react2.default.PropTypes.string,
+        playlist: _react2.default.PropTypes.string,
+        playsinline: _react2.default.PropTypes.oneOf([0, 1]),
+        rel: _react2.default.PropTypes.oneOf([0, 1]),
+        showinfo: _react2.default.PropTypes.oneOf([0, 1]),
+        start: _react2.default.PropTypes.number,
+        theme: _react2.default.PropTypes.oneOf(['dark', 'light']),
+        mute: _react2.default.PropTypes.oneOf([0, 1])
+    }) };
+ReactYoutubePlayer.defaultProps = {
+    width: '100%',
+    height: '100%',
+    playbackState: 'unstarted',
+    configuration: {},
+    onEnd: function onEnd() {},
+    onPlay: function onPlay() {},
+    onPause: function onPause() {},
+    onBuffer: function onBuffer() {},
+    onError: function onError() {}
+};
+exports.default = ReactYoutubePlayer;
 //# sourceMappingURL=index.js.map
